@@ -1,4 +1,4 @@
-module github.com/google/wire
+module github.com/dragon2org/wire
 
 go 1.18
 

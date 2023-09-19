@@ -14,7 +14,7 @@
 
 // Package wire contains directives for Wire code generation.
 // For an overview of working with Wire, see the user guide at
-// https://github.com/google/wire/blob/master/docs/guide.md
+// https://github.com/dragon2org/wire/blob/master/docs/guide.md
 //
 // The directives in this package are used as input to the Wire code generation
 // tool. The entry point of Wire's analysis are injector functions: function
@@ -115,7 +115,7 @@ func Bind(iface, to interface{}) Binding {
 }
 
 // bindToUsePointer is detected by the wire tool to indicate that Bind's second argument should take a pointer.
-// See https://github.com/google/wire/issues/120 for details.
+// See https://github.com/dragon2org/wire/issues/120 for details.
 const bindToUsePointer = true
 
 // A ProvidedValue is an expression that is copied to the generated injector.
@@ -156,12 +156,12 @@ type StructProvider struct{}
 //
 // For example:
 //
-//  type S struct {
-//    MyFoo *Foo
-//    MyBar *Bar
-//  }
-//  var Set = wire.NewSet(wire.Struct(new(S), "MyFoo")) -> inject only S.MyFoo
-//  var Set = wire.NewSet(wire.Struct(new(S), "*")) -> inject all fields
+//	type S struct {
+//	  MyFoo *Foo
+//	  MyBar *Bar
+//	}
+//	var Set = wire.NewSet(wire.Struct(new(S), "MyFoo")) -> inject only S.MyFoo
+//	var Set = wire.NewSet(wire.Struct(new(S), "*")) -> inject all fields
 func Struct(structType interface{}, fieldNames ...string) StructProvider {
 	return StructProvider{}
 }
@@ -175,22 +175,22 @@ type StructFields struct{}
 //
 // The following example would provide Foo and Bar using S.MyFoo and S.MyBar respectively:
 //
-//  type S struct {
-//  	MyFoo Foo
-//  	MyBar Bar
-//  }
+//	type S struct {
+//		MyFoo Foo
+//		MyBar Bar
+//	}
 //
-//  func NewStruct() S { /* ... */ }
-//  var Set = wire.NewSet(wire.FieldsOf(new(S), "MyFoo", "MyBar"))
+//	func NewStruct() S { /* ... */ }
+//	var Set = wire.NewSet(wire.FieldsOf(new(S), "MyFoo", "MyBar"))
 //
-//  or
+//	or
 //
-//  func NewStruct() *S { /* ... */ }
-//  var Set = wire.NewSet(wire.FieldsOf(new(*S), "MyFoo", "MyBar"))
+//	func NewStruct() *S { /* ... */ }
+//	var Set = wire.NewSet(wire.FieldsOf(new(*S), "MyFoo", "MyBar"))
 //
-//  If the structType argument is a pointer to a pointer to a struct, then FieldsOf
-//  additionally provides a pointer to each field type (e.g., *Foo and *Bar in the
-//  example above).
+//	If the structType argument is a pointer to a pointer to a struct, then FieldsOf
+//	additionally provides a pointer to each field type (e.g., *Foo and *Bar in the
+//	example above).
 func FieldsOf(structType interface{}, fieldNames ...string) StructFields {
 	return StructFields{}
 }

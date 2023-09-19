@@ -17,7 +17,7 @@
 // wire.go
 package main
 
-import "github.com/google/wire"
+import "github.com/dragon2org/wire"
 
 func InitializeFooStore() FooStorer {
 	wire.Build(

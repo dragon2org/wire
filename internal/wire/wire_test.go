@@ -463,7 +463,6 @@ type testCase struct {
 //			program_out.txt
 //					expected output from the final compiled program,
 //					missing if wire_errs.txt is present
-//
 func loadTestCase(root string, wireGoSrc []byte) (*testCase, error) {
 	name := filepath.Base(root)
 	pkg, err := ioutil.ReadFile(filepath.Join(root, "pkg"))
@@ -491,7 +490,7 @@ func loadTestCase(root string, wireGoSrc []byte) (*testCase, error) {
 		}
 	}
 	goFiles := map[string][]byte{
-		"github.com/google/wire/wire.go": wireGoSrc,
+		"github.com/dragon2org/wire/wire.go": wireGoSrc,
 	}
 	err = filepath.Walk(root, func(src string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -543,9 +542,9 @@ func (test *testCase) materialize(gopath string) error {
 		}
 	}
 
-	// Add go.mod files to example.com and github.com/google/wire.
+	// Add go.mod files to example.com and github.com/dragon2org/wire.
 	const importPath = "example.com"
-	const depPath = "github.com/google/wire"
+	const depPath = "github.com/dragon2org/wire"
 	depLoc := filepath.Join(gopath, "src", filepath.FromSlash(depPath))
 	example := fmt.Sprintf("module %s\n\nrequire %s v0.1.0\nreplace %s => %s\n", importPath, depPath, depPath, depLoc)
 	gomod := filepath.Join(gopath, "src", filepath.FromSlash(importPath), "go.mod")
